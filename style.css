@@ -1,0 +1,75 @@
+@font-face {
+	font-family: 'VC Garamond Condensed ExtraLight';
+	src: url('fonts/VCGaramondCondensed-ExtraLight.woff2') format('woff2');
+	font-weight: 300;
+	font-style: 0deg;
+}
+
+:root {
+	--bg-color: #ffffff;
+	--text-color: #333333;
+	--input-bg: #f0f0f0;
+	--input-text: #333333;
+	--button-bg: #4a4a4a;
+	--button-text: #ffffff;
+}
+
+.dark-mode {
+	--bg-color: #333333;
+	--text-color: #ffffff;
+	--input-bg: #4a4a4a;
+	--input-text: #ffffff;
+	--button-bg: #f0f0f0;
+	--button-text: #333333;
+}
+
+body {
+	box-sizing: border-box;
+	font-family: 'VC Garamond Condensed ExtraLight', ITC Garamond Condensed, 'Times New Roman', Times, serif;
+	width: 98%;
+	max-width: 1600px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	transition: background-color 0.3s, color 0.3s;
+}
+
+#search {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	background-color: var(--input-bg);
+	color: var(--input-text);
+	border: none;
+	border-radius: 5px;
+}
+
+#results {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 20px;
+}
+
+.image-container {
+	text-align: center;
+}
+
+.image-container img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 5px;
+}
+
+#mode-toggle {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	padding: 10px 20px;
+	background-color: var(--button-bg);
+	color: var(--button-text);
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s;
+}
