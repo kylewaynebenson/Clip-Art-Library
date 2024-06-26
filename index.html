@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clip Art Library</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body>
-    <h1>Clip Art Library</h1>
-    <button id="mode-toggle">Toggle Dark Mode</button>
-    <input type="text" id="search" placeholder="Search for images...">
+    <nav class="search-bar">
+        <div class="flex m-b-sm">
+            <h1 class="grow m-0">Clip Art Library</h1>
+            <button id="mode-toggle"><span class="material-icons">light_mode</span></button>
+        </div>
+        <input type="text" id="search" placeholder="Search for images...">
+    </nav>
     <div id="results"></div>
     <script src="script.js"></script>
 </body>

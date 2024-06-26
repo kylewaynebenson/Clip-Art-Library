@@ -57,9 +57,12 @@ fetch('images.json')
 
 // Dark mode toggle
 const modeToggle = document.getElementById('mode-toggle');
+const modeIcon = modeToggle.querySelector('.material-icons');
 modeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
-    modeToggle.textContent = document.body.classList.contains('dark-mode') 
-        ? 'Toggle Light Mode' 
-        : 'Toggle Dark Mode';
+    if (document.body.classList.contains('dark-mode')) {
+        modeIcon.textContent = 'dark_mode';
+    } else {
+        modeIcon.textContent = 'light_mode';
+    }
 });

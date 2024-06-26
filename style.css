@@ -12,6 +12,20 @@
 	--input-text: #333333;
 	--button-bg: #4a4a4a;
 	--button-text: #ffffff;
+
+	/* Padding variables */
+	--padding-xs: 0.25rem;  /* 4px if root font-size is 16px */
+	--padding-sm: 0.5rem;   /* 8px */
+	--padding-md: 1rem;     /* 16px */
+	--padding-lg: 1.5rem;   /* 24px */
+	--padding-xl: 2rem;     /* 32px */
+
+	/* You can also add margin variables if needed */
+	--margin-xs: 0.25rem;
+	--margin-sm: 0.5rem;
+	--margin-md: 1rem;
+	--margin-lg: 1.5rem;
+	--margin-xl: 2rem;
 }
 
 .dark-mode {
@@ -22,22 +36,29 @@
 	--button-bg: #f0f0f0;
 	--button-text: #333333;
 }
+/* Global box-sizing rule */
+*, *::before, *::after {
+	box-sizing: border-box;
+}
 
 body {
-	box-sizing: border-box;
-	font-family: 'VC Garamond Condensed ExtraLight', ITC Garamond Condensed, 'Times New Roman', Times, serif;
-	width: 98%;
-	max-width: 1600px;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	margin: 0 auto;
-	padding: 20px;
 	background-color: var(--bg-color);
 	color: var(--text-color);
 	transition: background-color 0.3s, color 0.3s;
 }
 
+h1, h2, h3, h4 {
+	font-family: 'VC Garamond Condensed ExtraLight', ITC Garamond Condensed, 'Times New Roman', Times, serif;
+}
+h1 {
+	font-size: 3em;
+}
+
 #search {
 	width: 100%;
-	padding: 10px;
+	padding: var(--padding-lg);
 	margin-bottom: 20px;
 	background-color: var(--input-bg);
 	color: var(--input-text);
@@ -48,7 +69,11 @@ body {
 #results {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	gap: 20px;
+	gap: var(--padding-sm);
+	padding: var(--padding-md);
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1600px;
 }
 
 .image-container {
@@ -60,16 +85,49 @@ body {
 	height: auto;
 	border-radius: 5px;
 }
-
+.search-bar {
+	position: sticky;
+	width: 100%;
+	padding: var(--padding-md);
+	background-color: var(--bg-color);
+}
 #mode-toggle {
-	position: fixed;
-	top: 20px;
-	right: 20px;
-	padding: 10px 20px;
+	position: absolute;
+	right: var(--padding-md);
+	top: var(--padding-md);
+	padding: 0;
 	background-color: var(--button-bg);
 	color: var(--button-text);
+	aspect-ratio: 1 / 1;
 	border: none;
-	border-radius: 5px;
+	border-radius: 50%;
 	cursor: pointer;
 	transition: background-color 0.3s, color 0.3s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
+#mode-toggle .material-icons {
+	font-size: 24px;
+	padding: var(--padding-md);
+}
+
+/* Flex utility classes */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.justify-evenly { justify-content: space-evenly; }
+.grow { flex-grow: 1; }
+.shrink { flex-shrink: 1; }
+.no-shrink { flex-shrink: 0; }
+.self-center { align-self: center; }
+.self-start { align-self: flex-start; }
+.self-end { align-self: flex-end; }
+.m-0 { margin: 0px; }
+.m-b-sm { margin-bottom: var(--margin-sm);}
