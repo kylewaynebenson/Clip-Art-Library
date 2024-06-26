@@ -6,15 +6,17 @@
     <title>Clip Art Library</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='45' cy='45' r='35' fill='none' stroke='%234a4a4a' stroke-width='8'/><line x1='70' y1='70' x2='95' y2='95' stroke='%234a4a4a' stroke-width='10' stroke-linecap='round'/></svg>" type="image/svg+xml">
 
 </head>
 <body>
     <nav class="search-bar">
-        <div class="flex m-b-sm">
+        <div class="flex m-b-sm g-sm">
             <h1 class="grow m-0">Clip Art Library</h1>
-            <button id="mode-toggle"><span class="material-icons">light_mode</span></button>
+            <button class="toggle scale-hover" id="favorites-toggle" class="hover-scale"><span class="material-icons">star</span></button>
+            <button class="toggle scale-hover" id="mode-toggle"><span class="material-icons">light_mode</span></button>
         </div>
-        <input type="text" id="search" placeholder="Search for images...">
+        <input class="scale-hover" type="text" id="search" placeholder="Search for images...">
     </nav>
     <div id="results"></div>
     <script src="script.js"></script>

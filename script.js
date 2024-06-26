@@ -1,4 +1,5 @@
 let allImages = [];
+let favorites = new Set(JSON.parse(localStorage.getItem('favorites')) || []);
 
 function displayImages(imagesToShow) {
     const resultsDiv = document.getElementById('results');
@@ -9,16 +10,37 @@ function displayImages(imagesToShow) {
     }
     imagesToShow.forEach(image => {
         const imgContainer = document.createElement('div');
-        imgContainer.className = 'image-container';
+        imgContainer.className = 'image-container hover-scale';
         const img = document.createElement('img');
         img.src = 'images/' + image.path;
         img.alt = image.name;
         const name = document.createElement('p');
         name.textContent = image.name;
+        const star = document.createElement('span');
+        star.className = 'material-icons favorite-star';
+        star.textContent = favorites.has(image.path) ? 'star' : 'star_border';
+        star.onclick = (e) => {
+            e.stopPropagation();
+            toggleFavorite(image.path, star);
+        };
         imgContainer.appendChild(img);
         imgContainer.appendChild(name);
+        imgContainer.appendChild(star);
         resultsDiv.appendChild(imgContainer);
     });
+}
+
+function toggleFavorite(imagePath, starElement) {
+    if (favorites.has(imagePath)) {
+        favorites.delete(imagePath);
+        starElement.textContent = 'star_border';
+        starElement.classList.remove('favorited');
+    } else {
+        favorites.add(imagePath);
+        starElement.textContent = 'star';
+        starElement.classList.add('favorited');
+    }
+    localStorage.setItem('favorites', JSON.stringify([...favorites]));
 }
 
 function getRandomImages(images, count) {
@@ -57,12 +79,20 @@ fetch('images.json')
 
 // Dark mode toggle
 const modeToggle = document.getElementById('mode-toggle');
-const modeIcon = modeToggle.querySelector('.material-icons');
 modeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
-    if (document.body.classList.contains('dark-mode')) {
-        modeIcon.textContent = 'dark_mode';
+    modeToggle.querySelector('.material-icons').textContent = 
+        document.body.classList.contains('dark-mode') ? 'dark_mode' : 'light_mode';
+});
+
+// Favorites toggle
+const favoritesToggle = document.getElementById('favorites-toggle');
+favoritesToggle.addEventListener('click', () => {
+    favoritesToggle.classList.toggle('active');
+    if (favoritesToggle.classList.contains('active')) {
+        const favoriteImages = allImages.filter(image => favorites.has(image.path));
+        displayImages(favoriteImages);
     } else {
-        modeIcon.textContent = 'light_mode';
+        displayRandomImages();
     }
 });
